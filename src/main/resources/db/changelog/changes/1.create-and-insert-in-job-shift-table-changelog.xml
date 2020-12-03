@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet author="Inaam" id="1">
+
+        <sql>
+
+
+            CREATE SEQUENCE job_shift_seq;
+
+            CREATE TABLE job_shift ( name VARCHAR(500) NOT NULL ,
+            id INT NOT NULL DEFAULT NEXTVAL ('job_shift_seq') , PRIMARY KEY (id)) ;
+
+            Insert into job_shift (name) values ('Morning');
+            Insert into job_shift (name) values ('Evening');
+            Insert into job_shift (name) values ('Night');
+            Insert into job_shift (name) values ('Mid Night');
+            Insert into job_shift (name) values ('Rotation Based');
+            Insert into job_shift (name) values ('Noon');
+            Insert into job_shift (name) values ('Early Morning');
+
+
+
+
+        </sql>
+
+    </changeSet>
+</databaseChangeLog>
