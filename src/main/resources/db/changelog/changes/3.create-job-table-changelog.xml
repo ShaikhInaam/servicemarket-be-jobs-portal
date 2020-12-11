@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet author="Inaam" id="3">
+
+        <sql>
+
+
+            CREATE SEQUENCE job_seq;
+
+            CREATE TABLE job (
+
+            username VARCHAR(400) NOT NULL, title VARCHAR(500) NOT NULL, description Text NULL,
+            country VARCHAR(100) NOT NULL, city VARCHAR(100) NOT NULL, company_name VARCHAR(100) NOT NULL,
+            company_address Text NULL, experience_start VARCHAR(20) NOT NULL, experience_end VARCHAR(20) NULL,
+            salary_start VARCHAR(100) NULL, salary_end VARCHAR(100) NULL, qualification VARCHAR(100) NOT NULL,
+            total_vacancies VARCHAR(100) NULL, posted_on TIMESTAMP(0) NOT NULL,
+            job_type_id INT NOT NULL, job_shift_id INT NOT NULL, job_category VARCHAR(100) NULL,
+            id INT NOT NULL DEFAULT NEXTVAL ('job_seq') , PRIMARY KEY (id)
+
+            ) ;
+
+
+
+
+
+        </sql>
+
+    </changeSet>
+</databaseChangeLog>
