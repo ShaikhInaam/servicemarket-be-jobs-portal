@@ -29,8 +29,6 @@ public class JobPostRequest extends BaseRequest{
     private String qualification;
     private String totalVacancies;
     @NotNull
-    private Timestamp postedOn;
-    @NotNull
     private Integer jobTypeId;
     @NotNull
     private Integer jobShiftId;

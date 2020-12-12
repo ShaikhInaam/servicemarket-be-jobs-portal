@@ -44,7 +44,6 @@ public class JobController {
             baseResponse.setResponseMessage("something went wrong! we are looking at our end, please try again in sometime");
             baseResponse.setResponseCode("00200");
         }
-        baseResponse.setResponse(isPost);
         return ResponseEntity.ok(baseResponse);
 
     }
