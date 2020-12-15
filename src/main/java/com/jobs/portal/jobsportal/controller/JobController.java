@@ -4,6 +4,8 @@ import com.jobs.portal.jobsportal.request.BaseRequest;
 import com.jobs.portal.jobsportal.request.JobPostRequest;
 import com.jobs.portal.jobsportal.response.BaseResponse;
 import com.jobs.portal.jobsportal.service.base.JobService;
+import com.jobs.portal.jobsportal.util.ConfigurationUtil;
+import com.jobs.portal.jobsportal.util.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,12 +22,18 @@ public class JobController {
     @Autowired
     JobService service;
 
+    @Autowired
+    ConfigurationUtil configurationUtil;
+
+
     @PostMapping("/job-shift")
     public ResponseEntity<BaseResponse> login(@Valid @RequestBody BaseRequest request)throws Exception{
 
         BaseResponse baseResponse = new BaseResponse();
-        baseResponse.setResponseMessage("SUCCESS");
-        baseResponse.setResponseCode("00100");
+
+        String value = configurationUtil.getMessage(Constants.SUCCESS_RESPONSE_CODE);
+        baseResponse.setResponseCode(Constants.SUCCESS_RESPONSE_CODE);
+        baseResponse.setResponseMessage(value);
         baseResponse.setResponse(service.getJobShift());
 
         return ResponseEntity.ok(baseResponse);
@@ -38,11 +46,13 @@ public class JobController {
         Integer isPost = service.postJob(request);
         BaseResponse baseResponse = new BaseResponse();
         if (isPost != null) {
-            baseResponse.setResponseMessage("SUCCESS");
-            baseResponse.setResponseCode("00100");
+            String value = configurationUtil.getMessage(Constants.SUCCESS_RESPONSE_CODE);
+            baseResponse.setResponseCode(Constants.SUCCESS_RESPONSE_CODE);
+            baseResponse.setResponseMessage(value);
         }else{
-            baseResponse.setResponseMessage("something went wrong! we are looking at our end, please try again in sometime");
-            baseResponse.setResponseCode("00200");
+            String value = configurationUtil.getMessage(Constants.FAILUARE_RESPNSE_CODE);
+            baseResponse.setResponseCode(Constants.FAILUARE_RESPNSE_CODE);
+            baseResponse.setResponseMessage(value);
         }
         return ResponseEntity.ok(baseResponse);
 
