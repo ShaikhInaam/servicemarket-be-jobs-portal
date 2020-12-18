@@ -8,5 +8,5 @@ import java.util.List;
 public interface JobService {
 
     List<String> getJobShift();
-
+    List<String> getJobType();
 }

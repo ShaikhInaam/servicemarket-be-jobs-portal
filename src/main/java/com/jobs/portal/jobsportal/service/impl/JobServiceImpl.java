@@ -1,7 +1,9 @@
 package com.jobs.portal.jobsportal.service.impl;
 
 import com.jobs.portal.jobsportal.entity.JobShiftEntity;
+import com.jobs.portal.jobsportal.entity.JobTypeEntity;
 import com.jobs.portal.jobsportal.repository.JobShiftRepository;
+import com.jobs.portal.jobsportal.repository.JobTypeRepository;
 import com.jobs.portal.jobsportal.service.base.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,8 @@ public class JobServiceImpl implements JobService {
 
     @Autowired
     JobShiftRepository jobShiftRepository;
+    @Autowired
+    JobTypeRepository jobTypeRepository;
 
 
     @Override
@@ -29,5 +33,17 @@ public class JobServiceImpl implements JobService {
         }
 
         return jobShifts;
+    }
+
+    @Override
+    public List<String> getJobType() {
+        List<String> jobTypes = new ArrayList<>();
+        List<JobTypeEntity> jobTypeEntityList = jobTypeRepository.findAll();
+        if(jobTypeEntityList!=null){
+            for(JobTypeEntity jobTypeEntity:jobTypeEntityList){
+                jobTypes.add(jobTypeEntity.getName());
+            }
+        }
+        return jobTypes;
     }
 }

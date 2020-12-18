@@ -31,5 +31,18 @@ public class JobController {
 
     }
 
+    @PostMapping("/job-type")
+    public ResponseEntity<BaseResponse> getJobType(@Valid @RequestBody BaseRequest request)throws Exception{
+
+        BaseResponse baseResponse = new BaseResponse();
+        baseResponse.setResponseMessage("SUCCESS");
+        baseResponse.setResponseCode("00100");
+        baseResponse.setResponse(service.getJobType());
+
+        return ResponseEntity.ok(baseResponse);
+
+    }
+
+
 
 }
