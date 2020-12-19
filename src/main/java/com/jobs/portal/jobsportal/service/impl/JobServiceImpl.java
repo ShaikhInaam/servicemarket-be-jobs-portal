@@ -40,6 +40,7 @@ public class JobServiceImpl implements JobService {
 
     @Override
     public Integer postJob(JobPostRequest jobPostRequest){
+
         JobEntity jobPost = JobEntity.builder()
                 .username(jobPostRequest.getUsername()).title(jobPostRequest.getTitle())
                 .description(jobPostRequest.getDescription())

@@ -35,9 +35,10 @@ public class JobController {
 
     @PostMapping("/post-job")
     public ResponseEntity<BaseResponse> postJob(@Valid @RequestBody JobPostRequest request)throws Exception{
-        Integer isPost = service.postJob(request);
+
+        Integer postJobId = service.postJob(request);
         BaseResponse baseResponse = new BaseResponse();
-        if (isPost != null) {
+        if (postJobId != null) {
             baseResponse.setResponseMessage("SUCCESS");
             baseResponse.setResponseCode("00100");
         }else{
