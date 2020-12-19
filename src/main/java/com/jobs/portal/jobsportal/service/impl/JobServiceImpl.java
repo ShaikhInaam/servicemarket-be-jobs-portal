@@ -69,14 +69,13 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
-    public List<String> getJobType() {
-        List<String> jobTypes = new ArrayList<>();
+    public List<JobTypeEntity> getJobType() {
+
         List<JobTypeEntity> jobTypeEntityList = jobTypeRepository.findAll();
-        if(jobTypeEntityList!=null){
-            for(JobTypeEntity jobTypeEntity:jobTypeEntityList){
-                jobTypes.add(jobTypeEntity.getName());
-            }
+        if(jobTypeEntityList !=null){
+            return jobTypeEntityList;
+        }else{
+            return null;
         }
-        return jobTypes;
     }
 }
