@@ -8,11 +8,7 @@ import lombok.Data;
 public class CountryListJsonResponse {
 
 
-    private String[] response;
-
-    private String responseMessage;
-
-    private String responseCode;
+    private String name;
 
 
 }

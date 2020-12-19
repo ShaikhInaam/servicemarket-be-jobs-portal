@@ -1,5 +1,6 @@
 package com.jobs.portal.jobsportal.controller;
 
+import com.jobs.portal.jobsportal.business.base.CountryBusiness;
 import com.jobs.portal.jobsportal.business.impl.CountryBusinessImpl;
 import com.jobs.portal.jobsportal.request.BaseRequest;
 import com.jobs.portal.jobsportal.request.JobPostRequest;
@@ -18,11 +19,15 @@ public class JobController {
     @Autowired
     JobService service;
 
+    @Autowired
+    CountryBusiness countryBusiness;
+
 
 
     @PostMapping("/job-shift")
     public ResponseEntity<BaseResponse> login(@Valid @RequestBody BaseRequest request)throws Exception{
 
+        countryBusiness.getJobShift(request);
         BaseResponse baseResponse = new BaseResponse();
         baseResponse.setResponseMessage("SUCCESS");
         baseResponse.setResponseCode("00100");
