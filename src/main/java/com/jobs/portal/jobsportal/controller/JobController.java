@@ -1,15 +1,14 @@
 package com.jobs.portal.jobsportal.controller;
 
+import com.jobs.portal.jobsportal.business.base.CountryBusiness;
+import com.jobs.portal.jobsportal.business.impl.CountryBusinessImpl;
 import com.jobs.portal.jobsportal.request.BaseRequest;
 import com.jobs.portal.jobsportal.request.JobPostRequest;
 import com.jobs.portal.jobsportal.response.BaseResponse;
 import com.jobs.portal.jobsportal.service.base.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -20,9 +19,15 @@ public class JobController {
     @Autowired
     JobService service;
 
+    @Autowired
+    CountryBusiness countryBusiness;
+
+
+
     @PostMapping("/job-shift")
     public ResponseEntity<BaseResponse> login(@Valid @RequestBody BaseRequest request)throws Exception{
 
+        countryBusiness.getJobShift(request);
         BaseResponse baseResponse = new BaseResponse();
         baseResponse.setResponseMessage("SUCCESS");
         baseResponse.setResponseCode("00100");
