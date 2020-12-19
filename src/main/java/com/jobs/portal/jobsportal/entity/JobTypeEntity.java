@@ -10,9 +10,8 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name ="job_shift")
-public class JobShiftEntity {
-
+@Table(name = "job_type")
+public class JobTypeEntity {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
