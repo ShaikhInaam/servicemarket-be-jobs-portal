@@ -9,5 +9,7 @@
 
 
     <include file="/db/changelog/changes/1.create-and-insert-in-job-shift-table-changelog.xml"/>
+    <include file="/db/changelog/changes/2.create-and-insert-in-job-type-table-changelog.xml"/>
+    <include file="/db/changelog/changes/3.create-job-table-changelog.xml"/>
 
 </databaseChangeLog>
