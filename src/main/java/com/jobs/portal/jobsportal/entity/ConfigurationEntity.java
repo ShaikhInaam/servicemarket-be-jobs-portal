@@ -15,7 +15,7 @@ import java.io.Serializable;
 public class ConfigurationEntity implements Serializable {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private String id;
 
     private String code;
@@ -25,3 +25,4 @@ public class ConfigurationEntity implements Serializable {
 
 
 }
+

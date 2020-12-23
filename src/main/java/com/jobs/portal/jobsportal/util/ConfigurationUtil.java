@@ -1,5 +1,6 @@
 package com.jobs.portal.jobsportal.util;
 
+
 import com.jobs.portal.jobsportal.service.base.ConfigurationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,6 @@ public class ConfigurationUtil {
 
     @Autowired
     ConfigurationService configService;
-
 
     public static Map<String, String> constants = new HashMap<>();
 

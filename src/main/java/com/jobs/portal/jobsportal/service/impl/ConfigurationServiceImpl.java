@@ -37,3 +37,4 @@ public class ConfigurationServiceImpl implements ConfigurationService {
         return constantsRepository.findByCode(code);
     }
 }
+

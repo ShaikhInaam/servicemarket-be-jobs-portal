@@ -1,9 +1,6 @@
 package com.jobs.portal.jobsportal.util;
 
-
 public class Constants {
-
-
 
     // 00100 series
 
@@ -33,3 +30,4 @@ public class Constants {
 
 
 }
+
