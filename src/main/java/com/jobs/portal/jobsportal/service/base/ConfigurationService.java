@@ -12,4 +12,3 @@ public interface ConfigurationService {
     Map updateConstants();
     ConfigurationEntity findConstantsByCode(String code);
 }
-

@@ -22,13 +22,15 @@ public class JobController {
     JobService service;
 
     @Autowired
+    ConfigurationUtil configurationUtil;
+
+
+    @Autowired
     JobBusiness business;
 
     @Autowired
     CountryBusiness countryBusiness;
 
-    @Autowired
-    ConfigurationUtil configurationUtil;
 
 
 
@@ -37,6 +39,10 @@ public class JobController {
 
         countryBusiness.getJobShift(request);
         BaseResponse baseResponse = new BaseResponse();
+
+        String value = configurationUtil.getMessage(Constants.SUCCESS_RESPONSE_CODE);
+        baseResponse.setResponseCode(Constants.SUCCESS_RESPONSE_CODE);
+        baseResponse.setResponseMessage(value);
         baseResponse.setResponseMessage(configurationUtil.getMessage(Constants.SUCCESS_RESPONSE_CODE));
         baseResponse.setResponseCode(Constants.SUCCESS_RESPONSE_CODE);
         baseResponse.setResponse(service.getJobShift());
@@ -64,8 +70,8 @@ public class JobController {
             baseResponse.setResponseMessage(configurationUtil.getMessage(Constants.SUCCESS_RESPONSE_CODE));
             baseResponse.setResponseCode(Constants.SUCCESS_RESPONSE_CODE);
         }else{
-            baseResponse.setResponseMessage("something went wrong! we are looking at our end, please try again in sometime");
-            baseResponse.setResponseCode("00200");
+
+            throw new RuntimeException();
         }
         return ResponseEntity.ok(baseResponse);
 
