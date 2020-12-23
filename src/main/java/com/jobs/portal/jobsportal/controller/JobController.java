@@ -31,8 +31,6 @@ public class JobController {
     @Autowired
     CountryBusiness countryBusiness;
 
-    @Autowired
-    ConfigurationUtil configurationUtil;
 
 
 
@@ -68,17 +66,12 @@ public class JobController {
 
         Integer postJobId = service.postJob(request);
         BaseResponse baseResponse = new BaseResponse();
-        if (isPost != null) {
-            String value = configurationUtil.getMessage(Constants.SUCCESS_RESPONSE_CODE);
-            baseResponse.setResponseCode(Constants.SUCCESS_RESPONSE_CODE);
-            baseResponse.setResponseMessage(value);
         if (postJobId != null) {
             baseResponse.setResponseMessage(configurationUtil.getMessage(Constants.SUCCESS_RESPONSE_CODE));
             baseResponse.setResponseCode(Constants.SUCCESS_RESPONSE_CODE);
         }else{
-            String value = configurationUtil.getMessage(Constants.FAILUARE_RESPNSE_CODE);
-            baseResponse.setResponseCode(Constants.FAILUARE_RESPNSE_CODE);
-            baseResponse.setResponseMessage(value);
+
+            throw new RuntimeException();
         }
         return ResponseEntity.ok(baseResponse);
 

@@ -61,7 +61,7 @@ public class JavaMailUtil {
                 Message message = new MimeMessage(session);
                 message.setFrom(new InternetAddress(myAccountEmail));
                 message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient[i]));
-                message.setSubject("Service Market Exception Log");
+                message.setSubject("SMP Jobs Portal Exception Log");
                 message.setText(String.valueOf(errors));
                 return message;
             }
