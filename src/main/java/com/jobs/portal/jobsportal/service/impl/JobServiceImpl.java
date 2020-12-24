@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -28,18 +27,13 @@ public class JobServiceImpl implements JobService {
 
 
     @Override
-    public List<String> getJobShift() {
-
-        List<String> jobShifts = new ArrayList<>();
+    public List<JobShiftEntity> getJobShift() {
 
         List<JobShiftEntity> jobShiftEntities = jobShiftRepository.findAll();
         if(jobShiftEntities != null){
-            for (JobShiftEntity entity:jobShiftEntities) {
-                jobShifts.add(entity.getName());
-            }
+            return jobShiftEntities;
         }
-
-        return jobShifts;
+        return null;
     }
 
     @Override
@@ -74,8 +68,8 @@ public class JobServiceImpl implements JobService {
         List<JobTypeEntity> jobTypeEntityList = jobTypeRepository.findAll();
         if(jobTypeEntityList !=null){
             return jobTypeEntityList;
-        }else{
-            return null;
         }
+        return null;
+
     }
 }

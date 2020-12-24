@@ -37,17 +37,7 @@ public class JobController {
     @PostMapping("/job-shift")
     public ResponseEntity<BaseResponse> login(@Valid @RequestBody BaseRequest request)throws Exception{
 
-        countryBusiness.getJobShift(request);
-        BaseResponse baseResponse = new BaseResponse();
-
-        String value = configurationUtil.getMessage(Constants.SUCCESS_RESPONSE_CODE);
-        baseResponse.setResponseCode(Constants.SUCCESS_RESPONSE_CODE);
-        baseResponse.setResponseMessage(value);
-        baseResponse.setResponseMessage(configurationUtil.getMessage(Constants.SUCCESS_RESPONSE_CODE));
-        baseResponse.setResponseCode(Constants.SUCCESS_RESPONSE_CODE);
-        baseResponse.setResponse(service.getJobShift());
-
-        return ResponseEntity.ok(baseResponse);
+        return ResponseEntity.ok(business.getJobShift(request));
 
     }
 

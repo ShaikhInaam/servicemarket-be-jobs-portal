@@ -5,5 +5,6 @@ import com.jobs.portal.jobsportal.response.BaseResponse;
 
 public interface JobBusiness {
 
-    public BaseResponse getJobType(BaseRequest baseRequest);
+    BaseResponse getJobType(BaseRequest baseRequest);
+    BaseResponse getJobShift(BaseRequest baseRequest);
 }
