@@ -13,6 +13,7 @@
             Insert into configuration (code, message_english) values ('00100', 'SUCCESS');
             Insert into configuration (code, message_english) values ('00200', 'something went wrong! we are looking at our end, please try again in sometime');
             Insert into configuration (code, message_english) values ('00500', 'Required field are missing');
+            Insert into configuration (code, message_english) values ('00600', 'Record not found for given Ids');
             Insert into configuration (code, message_english) values ('000100', 'GET');
             Insert into configuration (code, message_english) values ('000200', 'POST');
             Insert into configuration (code, message_english) values ('01000', 'shaikhinaam2@gmail.com,servicemarketpakistan@gmail.com');

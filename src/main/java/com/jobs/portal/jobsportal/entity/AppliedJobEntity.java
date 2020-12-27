@@ -1,5 +1,6 @@
 package com.jobs.portal.jobsportal.entity;
 
+
 import lombok.*;
 
 import javax.persistence.*;
@@ -12,17 +13,25 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "configuration")
-public class ConfigurationEntity implements Serializable {
+public class AppliedJobEntity implements Serializable {
+
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
 
-    private String code;
+    @Column(name = "job_id")
+    private Integer jobId;
 
-    @Column(name = "message_english")
-    private String messageEnglish;
+    private String username;
+
+    @Column(name = "cv_path")
+    private String cvPath;
+
+    @Column(name = "cover_letter")
+    private String coverLetter;
+
+    private String description;
 
 
 }
-

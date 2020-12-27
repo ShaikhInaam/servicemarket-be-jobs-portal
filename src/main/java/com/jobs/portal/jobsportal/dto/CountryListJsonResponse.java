@@ -7,8 +7,6 @@ import lombok.Data;
 @Data
 public class CountryListJsonResponse {
 
-
     private String name;
-
 
 }

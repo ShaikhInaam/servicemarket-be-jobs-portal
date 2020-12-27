@@ -7,6 +7,7 @@ public class Constants {
     public static String SUCCESS_RESPONSE_CODE = "00100";
     public static String FAILUARE_RESPNSE_CODE = "00200";
     public static String INVALID_FIELD_RESPONSE_CODE = "00500";
+    public static String DB_RECORDS_NOT_FOUNT_RESPONSE_CODE = "00600";
 
 
     // 000100 series

@@ -32,8 +32,6 @@ public class JobController {
     CountryBusiness countryBusiness;
 
 
-
-
     @PostMapping("/job-shift")
     public ResponseEntity<BaseResponse> login(@Valid @RequestBody BaseRequest request)throws Exception{
 
@@ -44,26 +42,15 @@ public class JobController {
     @PostMapping("/job-type")
     public ResponseEntity<BaseResponse> getJobType(@Valid @RequestBody BaseRequest request)throws Exception{
 
-
         return ResponseEntity.ok(business.getJobType(request));
 
     }
 
 
-
     @PostMapping("/post-job")
     public ResponseEntity<BaseResponse> postJob(@Valid @RequestBody JobPostRequest request)throws Exception{
 
-        Integer postJobId = service.postJob(request);
-        BaseResponse baseResponse = new BaseResponse();
-        if (postJobId != null) {
-            baseResponse.setResponseMessage(configurationUtil.getMessage(Constants.SUCCESS_RESPONSE_CODE));
-            baseResponse.setResponseCode(Constants.SUCCESS_RESPONSE_CODE);
-        }else{
-
-            throw new RuntimeException();
-        }
-        return ResponseEntity.ok(baseResponse);
+        return ResponseEntity.ok(business.postJob(request));
 
     }
 

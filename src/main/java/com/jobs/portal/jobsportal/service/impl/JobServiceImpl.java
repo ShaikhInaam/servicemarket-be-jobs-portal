@@ -72,4 +72,18 @@ public class JobServiceImpl implements JobService {
         return null;
 
     }
+
+
+    @Override
+    public JobTypeEntity getJobType(Integer id){
+
+        return jobTypeRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public JobShiftEntity getJobShift(Integer id){
+
+        return  jobShiftRepository.findById(id).orElse(null);
+    }
+
 }

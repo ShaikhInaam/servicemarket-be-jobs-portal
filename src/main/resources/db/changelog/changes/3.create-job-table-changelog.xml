@@ -9,7 +9,6 @@
 
         <sql>
 
-
             CREATE SEQUENCE job_seq;
 
             CREATE TABLE job (
@@ -23,9 +22,6 @@
             id INT NOT NULL DEFAULT NEXTVAL ('job_seq') , PRIMARY KEY (id)
 
             ) ;
-
-
-
 
 
         </sql>
