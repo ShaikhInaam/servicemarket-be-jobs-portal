@@ -19,7 +19,6 @@ import javax.annotation.PostConstruct;
 public class JobsportalApplication {
 
 
-
     @Autowired
     ConfigurationUtil configurationUtil;
 

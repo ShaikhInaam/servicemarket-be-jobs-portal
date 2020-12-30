@@ -1,6 +1,7 @@
 package com.jobs.portal.jobsportal.business.impl;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 
@@ -41,7 +42,7 @@ public class CountryBusinessImpl implements CountryBusiness {
         header.add("ContentType", "application/json");
 
 
-        LinkedHashMap response = (LinkedHashMap) utility.callGetJson("https://restcountries.eu/rest/v2/all", CountryListJsonResponse.class, header);
+        List response = (List) utility.callGetJson("https://restcountries.eu/rest/v2/all", ArrayList.class, header);
        List<CountryListJsonResponse> jsonResponseList = null;
         if(response !=null){
 
