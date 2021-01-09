@@ -1,4 +1,6 @@
 package com.jobs.portal.jobsportal.service.base;
+import com.jobs.portal.jobsportal.entity.AppliedJobEntity;
+import com.jobs.portal.jobsportal.entity.JobEntity;
 import com.jobs.portal.jobsportal.entity.JobShiftEntity;
 import com.jobs.portal.jobsportal.entity.JobTypeEntity;
 import com.jobs.portal.jobsportal.request.JobPostRequest;
@@ -12,5 +14,7 @@ public interface JobService {
     Integer postJob(JobPostRequest jobPostRequest);
     JobTypeEntity getJobType(Integer id);
     JobShiftEntity getJobShift(Integer id);
+    List<JobEntity> getAllJobs();
+    List<AppliedJobEntity> getAppliedJobDetails(Integer jobId);
 
 }

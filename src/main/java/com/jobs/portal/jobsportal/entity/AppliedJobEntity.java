@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "configuration")
+@Table(name = "applied_job")
 public class AppliedJobEntity implements Serializable {
 
 

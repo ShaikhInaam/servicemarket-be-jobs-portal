@@ -9,4 +9,5 @@ public interface JobBusiness {
     BaseResponse getJobType(BaseRequest baseRequest);
     BaseResponse getJobShift(BaseRequest baseRequest);
     BaseResponse postJob(JobPostRequest jobPostRequest);
+    BaseResponse getAllJobs(BaseRequest baseRequest);
 }

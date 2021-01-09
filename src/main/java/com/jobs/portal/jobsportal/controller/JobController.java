@@ -54,4 +54,12 @@ public class JobController {
 
     }
 
+
+    @PostMapping("/job")
+    public ResponseEntity<BaseResponse> getJobs(@Valid @RequestBody BaseRequest request)throws Exception{
+
+        return ResponseEntity.ok(business.getAllJobs(request));
+
+    }
+
 }

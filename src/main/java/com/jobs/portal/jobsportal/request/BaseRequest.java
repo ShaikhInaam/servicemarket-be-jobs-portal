@@ -11,4 +11,6 @@ public class BaseRequest {
     @NotBlank
     private String transactionId;
 
+    private String username;
+
 }

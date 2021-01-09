@@ -1,7 +1,9 @@
 package com.jobs.portal.jobsportal.service.impl;
 
+import com.jobs.portal.jobsportal.entity.AppliedJobEntity;
 import com.jobs.portal.jobsportal.entity.JobEntity;
 import com.jobs.portal.jobsportal.entity.JobShiftEntity;
+import com.jobs.portal.jobsportal.repository.AppliedJobRepository;
 import com.jobs.portal.jobsportal.repository.JobRepository;
 import com.jobs.portal.jobsportal.entity.JobTypeEntity;
 import com.jobs.portal.jobsportal.repository.JobShiftRepository;
@@ -24,6 +26,9 @@ public class JobServiceImpl implements JobService {
 
     @Autowired
     JobRepository jobRepository;
+
+    @Autowired
+    AppliedJobRepository appliedJobRepository;
 
 
     @Override
@@ -85,5 +90,22 @@ public class JobServiceImpl implements JobService {
 
         return  jobShiftRepository.findById(id).orElse(null);
     }
+
+    @Override
+    public List<JobEntity> getAllJobs(){
+
+        return jobRepository.findAllByOrderByPostedOnDesc();
+
+    }
+
+    @Override
+    public List<AppliedJobEntity> getAppliedJobDetails(Integer jobId){
+
+        List<AppliedJobEntity> appliedJobEntities = appliedJobRepository.findByJobId(jobId);
+        return appliedJobEntities;
+
+    }
+
+
 
 }
