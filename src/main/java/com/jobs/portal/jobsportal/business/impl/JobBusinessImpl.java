@@ -7,6 +7,7 @@ import com.jobs.portal.jobsportal.entity.JobEntity;
 import com.jobs.portal.jobsportal.entity.JobShiftEntity;
 import com.jobs.portal.jobsportal.entity.JobTypeEntity;
 import com.jobs.portal.jobsportal.request.BaseRequest;
+import com.jobs.portal.jobsportal.request.JobApplyRequest;
 import com.jobs.portal.jobsportal.request.JobPostRequest;
 import com.jobs.portal.jobsportal.response.BaseResponse;
 import com.jobs.portal.jobsportal.response.JobResponse;
@@ -82,7 +83,8 @@ public class JobBusinessImpl implements JobBusiness {
                 baseResponse.setResponseCode(Constants.SUCCESS_RESPONSE_CODE);
             }else{
 
-                throw new RuntimeException();
+                return BaseResponse.builder().response(null).responseCode(Constants.FAILUARE_RESPNSE_CODE).responseMessage(configurationUtil.getMessage(Constants.FAILUARE_RESPNSE_CODE)).build();
+
             }
             return baseResponse;
 
@@ -123,7 +125,7 @@ public class JobBusinessImpl implements JobBusiness {
                 List<AppliedJobEntity> appliedJobEntities = service.getAppliedJobDetails(entity.getId());
                 Boolean isApplied= false;
                 for (AppliedJobEntity appliedJobEntity:appliedJobEntities) {
-                    if(appliedJobEntity.getUsername().equals(entity.getUsername())){
+                    if(appliedJobEntity.getUsername().equals(baseRequest.getUsername())){
                         userAppliedJobs.add(job);
                         isApplied = true;
                     }
@@ -138,6 +140,32 @@ public class JobBusinessImpl implements JobBusiness {
 
         JobResponse jobResponse = JobResponse.builder().otherJobs(otherJobs).userAppliedJobs(userAppliedJobs).userPostedJobs(userPostedJobs).build();
         return BaseResponse.builder().response(jobResponse).responseCode(Constants.SUCCESS_RESPONSE_CODE).responseMessage(configurationUtil.getMessage(Constants.SUCCESS_RESPONSE_CODE)).build();
+
+    }
+
+
+    @Override
+    public BaseResponse applyJob(JobApplyRequest request){
+
+        JobEntity jobEntity = service.getJob(request.getJobId());
+        if(CommanUtil.isNotNull(jobEntity)){
+
+            Integer jobAppliedId = service.applyJob(request);
+            if(CommanUtil.isNotNull(jobAppliedId)){
+
+                return BaseResponse.builder().response(null).responseCode(Constants.SUCCESS_RESPONSE_CODE).responseMessage(configurationUtil.getMessage(Constants.SUCCESS_RESPONSE_CODE)).build();
+
+            }else{
+
+                return BaseResponse.builder().response(null).responseCode(Constants.FAILUARE_RESPNSE_CODE).responseMessage(configurationUtil.getMessage(Constants.FAILUARE_RESPNSE_CODE)).build();
+
+            }
+
+
+        }else{
+
+            return BaseResponse.builder().response(null).responseCode(Constants.DB_RECORDS_NOT_FOUNT_RESPONSE_CODE).responseMessage(configurationUtil.getMessage(Constants.DB_RECORDS_NOT_FOUNT_RESPONSE_CODE)).build();
+        }
 
     }
 

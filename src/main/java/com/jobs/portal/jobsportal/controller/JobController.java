@@ -3,6 +3,7 @@ package com.jobs.portal.jobsportal.controller;
 import com.jobs.portal.jobsportal.business.base.CountryBusiness;
 import com.jobs.portal.jobsportal.business.base.JobBusiness;
 import com.jobs.portal.jobsportal.request.BaseRequest;
+import com.jobs.portal.jobsportal.request.JobApplyRequest;
 import com.jobs.portal.jobsportal.request.JobPostRequest;
 import com.jobs.portal.jobsportal.response.BaseResponse;
 import com.jobs.portal.jobsportal.service.base.JobService;
@@ -59,6 +60,13 @@ public class JobController {
     public ResponseEntity<BaseResponse> getJobs(@Valid @RequestBody BaseRequest request)throws Exception{
 
         return ResponseEntity.ok(business.getAllJobs(request));
+
+    }
+
+    @PostMapping("/apply-job")
+    public ResponseEntity<BaseResponse> applyJob(@Valid @RequestBody JobApplyRequest request)throws Exception{
+
+        return ResponseEntity.ok(business.applyJob(request));
 
     }
 

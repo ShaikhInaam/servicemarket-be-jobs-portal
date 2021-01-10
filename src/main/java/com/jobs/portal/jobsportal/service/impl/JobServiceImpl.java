@@ -7,6 +7,7 @@ import com.jobs.portal.jobsportal.repository.AppliedJobRepository;
 import com.jobs.portal.jobsportal.repository.JobRepository;
 import com.jobs.portal.jobsportal.entity.JobTypeEntity;
 import com.jobs.portal.jobsportal.repository.JobShiftRepository;
+import com.jobs.portal.jobsportal.request.JobApplyRequest;
 import com.jobs.portal.jobsportal.request.JobPostRequest;
 import com.jobs.portal.jobsportal.repository.JobTypeRepository;
 import com.jobs.portal.jobsportal.service.base.JobService;
@@ -99,10 +100,30 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
+    public JobEntity getJob(Integer id){
+
+        return  jobRepository.findById(id).orElse(null);
+
+    }
+
+    @Override
     public List<AppliedJobEntity> getAppliedJobDetails(Integer jobId){
 
         List<AppliedJobEntity> appliedJobEntities = appliedJobRepository.findByJobId(jobId);
         return appliedJobEntities;
+
+    }
+
+    @Override
+    public Integer applyJob(JobApplyRequest request){
+
+        AppliedJobEntity entity = AppliedJobEntity.builder()
+                .username(request.getUsername()).description(request.getDescription())
+                .coverLetter(request.getCoverLetter()).jobId(request.getJobId())
+                .cvPath(request.getCvPath()).build();
+
+        entity = appliedJobRepository.saveAndFlush(entity);
+        return entity.getJobId();
 
     }
 
