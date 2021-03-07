@@ -6,6 +6,7 @@ import com.jobs.portal.jobsportal.entity.JobTypeEntity;
 import com.jobs.portal.jobsportal.request.JobApplyRequest;
 import com.jobs.portal.jobsportal.request.JobPostRequest;
 import java.util.List;
+import java.util.Optional;
 
 
 public interface JobService {
@@ -19,5 +20,8 @@ public interface JobService {
     List<AppliedJobEntity> getAppliedJobDetails(Integer jobId);
     Integer applyJob(JobApplyRequest request);
     JobEntity getJob(Integer id);
+    Optional<JobEntity> getJobDetails(Integer id);
+    List<AppliedJobEntity> findByJobId(Integer id);
+
 
 }

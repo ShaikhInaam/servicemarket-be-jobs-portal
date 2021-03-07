@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class JobServiceImpl implements JobService {
@@ -104,6 +105,18 @@ public class JobServiceImpl implements JobService {
 
         return  jobRepository.findById(id).orElse(null);
 
+    }
+
+    @Override
+    public Optional<JobEntity> getJobDetails(Integer id) {
+       return jobRepository.findById(id);
+
+
+    }
+
+    @Override
+    public List<AppliedJobEntity> findByJobId(Integer id) {
+        return appliedJobRepository.findByJobId(id);
     }
 
     @Override

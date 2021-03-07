@@ -1,6 +1,7 @@
 package com.jobs.portal.jobsportal.business.base;
 
 import com.jobs.portal.jobsportal.request.BaseRequest;
+import com.jobs.portal.jobsportal.request.JobApplicantInfoRequest;
 import com.jobs.portal.jobsportal.request.JobApplyRequest;
 import com.jobs.portal.jobsportal.request.JobPostRequest;
 import com.jobs.portal.jobsportal.response.BaseResponse;
@@ -12,4 +13,5 @@ public interface JobBusiness {
     BaseResponse postJob(JobPostRequest jobPostRequest);
     BaseResponse getAllJobs(BaseRequest baseRequest);
     BaseResponse applyJob(JobApplyRequest request);
+    BaseResponse getApplicantInfoForJob(JobApplicantInfoRequest request);
 }

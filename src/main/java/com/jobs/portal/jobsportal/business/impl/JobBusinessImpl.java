@@ -2,17 +2,17 @@ package com.jobs.portal.jobsportal.business.impl;
 
 import com.jobs.portal.jobsportal.business.base.JobBusiness;
 import com.jobs.portal.jobsportal.dto.Job;
+import com.jobs.portal.jobsportal.dto.JobApplicants;
 import com.jobs.portal.jobsportal.entity.AppliedJobEntity;
 import com.jobs.portal.jobsportal.entity.JobEntity;
 import com.jobs.portal.jobsportal.entity.JobShiftEntity;
 import com.jobs.portal.jobsportal.entity.JobTypeEntity;
+import com.jobs.portal.jobsportal.repository.AppliedJobRepository;
 import com.jobs.portal.jobsportal.request.BaseRequest;
+import com.jobs.portal.jobsportal.request.JobApplicantInfoRequest;
 import com.jobs.portal.jobsportal.request.JobApplyRequest;
 import com.jobs.portal.jobsportal.request.JobPostRequest;
-import com.jobs.portal.jobsportal.response.BaseResponse;
-import com.jobs.portal.jobsportal.response.JobResponse;
-import com.jobs.portal.jobsportal.response.JobShiftResponse;
-import com.jobs.portal.jobsportal.response.JobTypeResponse;
+import com.jobs.portal.jobsportal.response.*;
 import com.jobs.portal.jobsportal.service.base.JobService;
 import com.jobs.portal.jobsportal.util.CommanUtil;
 import com.jobs.portal.jobsportal.util.ConfigurationUtil;
@@ -23,6 +23,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class JobBusinessImpl implements JobBusiness {
@@ -31,6 +32,10 @@ public class JobBusinessImpl implements JobBusiness {
     JobService service;
     @Autowired
     ConfigurationUtil configurationUtil;
+
+    @Autowired
+    AppliedJobRepository appliedJobRepository;
+
 
     @Override
     public BaseResponse getJobType(BaseRequest baseRequest){
@@ -167,6 +172,35 @@ public class JobBusinessImpl implements JobBusiness {
             return BaseResponse.builder().response(null).responseCode(Constants.DB_RECORDS_NOT_FOUNT_RESPONSE_CODE).responseMessage(configurationUtil.getMessage(Constants.DB_RECORDS_NOT_FOUNT_RESPONSE_CODE)).build();
         }
 
+    }
+
+    @Override
+    public BaseResponse getApplicantInfoForJob(JobApplicantInfoRequest request) {
+
+        List<JobApplicants> totalApplicants = new ArrayList<>();
+        Optional<JobEntity> job = service.getJobDetails(request.getJobId());
+        List<JobApplicantInfoResponse> response = new ArrayList<>();
+        List<AppliedJobEntity> applicantsList = service.findByJobId(request.getJobId());
+        String userName = job.get().getUsername();
+        if (userName.equals(request.getUsername()))
+        {
+            for (int i = 0; i < applicantsList.size(); i++) {
+
+             totalApplicants.add(JobApplicants.builder().name(applicantsList.get(i).getUsername())
+             .coverLetter(applicantsList.get(i).getCoverLetter())
+             .cvPath(applicantsList.get(i).getCvPath())
+             .description(applicantsList.get(i).getDescription()).build());
+
+            }
+        response.add(JobApplicantInfoResponse.builder().jobDetails(job)
+                .applicants(totalApplicants).build());
+        return BaseResponse.builder().responseCode(Constants.SUCCESS_RESPONSE_CODE)
+                .responseMessage(configurationUtil.getMessage(Constants.SUCCESS_RESPONSE_CODE)).response(response).build();
+
+    }else {
+        return BaseResponse.builder().responseCode(Constants.FAILUARE_RESPNSE_CODE)
+        .responseMessage(configurationUtil.getMessage(Constants.FAILUARE_RESPNSE_CODE)).build();
+        }
     }
 
 
