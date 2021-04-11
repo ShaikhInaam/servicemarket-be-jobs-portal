@@ -17,7 +17,7 @@ import javax.validation.Valid;
 public class CompanyProfileController {
     @Autowired
     CompanyProfileBusiness companyProfileBusiness ;
-    @PostMapping("companyprofile")
+    @PostMapping("/profileRegistration")
     public ResponseEntity<BaseResponse> companyProfile(@Valid @RequestBody CompanyProfileRequest request)throws Exception {
      BaseResponse baseResponse =companyProfileBusiness.AddCompanyProfile(request);
         return ResponseEntity.ok(baseResponse);
