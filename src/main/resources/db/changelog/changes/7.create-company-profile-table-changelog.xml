@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet author="Inaam" id="9">
+
+        <sql>
+
+
+            CREATE SEQUENCE company_profile_sequence;
+
+            CREATE TABLE company_profile (
+
+            companyName VARCHAR(400) NOT NULL,
+            address VARCHAR(1000) NOT NULL,about text NULL, country VARCHAR (400) Not NULL, city VARCHAR (400) Not NULL,
+            id INT NOT NULL DEFAULT NEXTVAL ('company_profile_sequence') , PRIMARY KEY (id)
+
+            );
+
+
+
+
+
+        </sql>
+
+    </changeSet>
+</databaseChangeLog>

@@ -14,5 +14,6 @@
     <include file="/db/changelog/changes/4.create-constants-table-changelog.xml"/>
     <include file="/db/changelog/changes/5.insert-data-configuration-table-changelog.xml"/>
     <include file="/db/changelog/changes/6.create-applied-job-table-changelog.xml"/>
+    <include file="/db/changelog/changes/7.create-company-profile-table-changelog.xml"/>
 
 </databaseChangeLog>
