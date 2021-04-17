@@ -10,12 +10,15 @@ import com.jobs.portal.jobsportal.repository.JobShiftRepository;
 import com.jobs.portal.jobsportal.request.JobApplyRequest;
 import com.jobs.portal.jobsportal.request.JobPostRequest;
 import com.jobs.portal.jobsportal.repository.JobTypeRepository;
+import com.jobs.portal.jobsportal.response.JobApplyResponse;
 import com.jobs.portal.jobsportal.service.base.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class JobServiceImpl implements JobService {
@@ -115,7 +118,7 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
-    public Integer applyJob(JobApplyRequest request){
+    public JobApplyResponse applyJob(JobApplyRequest request){
 
         AppliedJobEntity entity = AppliedJobEntity.builder()
                 .username(request.getUsername()).description(request.getDescription())
@@ -123,7 +126,22 @@ public class JobServiceImpl implements JobService {
                 .cvPath(request.getCvPath()).build();
 
         entity = appliedJobRepository.saveAndFlush(entity);
-        return entity.getJobId();
+
+        Optional<JobEntity> job = jobRepository.findById(request.getJobId());
+
+        if(Objects.nonNull(job) && Objects.nonNull(job.get()))
+        {
+            JobEntity jobEntity = job.get();
+            JobApplyResponse jobApplyResponse = JobApplyResponse.builder().job_title(jobEntity.getTitle())
+                    .admin_username(jobEntity.getUsername())
+                    .company_name(jobEntity.getCompanyName()).build();
+
+            return jobApplyResponse;
+        }
+        else {
+
+            return null;
+        }
 
     }
 

@@ -9,10 +9,7 @@ import com.jobs.portal.jobsportal.entity.JobTypeEntity;
 import com.jobs.portal.jobsportal.request.BaseRequest;
 import com.jobs.portal.jobsportal.request.JobApplyRequest;
 import com.jobs.portal.jobsportal.request.JobPostRequest;
-import com.jobs.portal.jobsportal.response.BaseResponse;
-import com.jobs.portal.jobsportal.response.JobResponse;
-import com.jobs.portal.jobsportal.response.JobShiftResponse;
-import com.jobs.portal.jobsportal.response.JobTypeResponse;
+import com.jobs.portal.jobsportal.response.*;
 import com.jobs.portal.jobsportal.service.base.JobService;
 import com.jobs.portal.jobsportal.util.CommanUtil;
 import com.jobs.portal.jobsportal.util.ConfigurationUtil;
@@ -150,10 +147,10 @@ public class JobBusinessImpl implements JobBusiness {
         JobEntity jobEntity = service.getJob(request.getJobId());
         if(CommanUtil.isNotNull(jobEntity)){
 
-            Integer jobAppliedId = service.applyJob(request);
-            if(CommanUtil.isNotNull(jobAppliedId)){
+            JobApplyResponse jobApplyResponse = service.applyJob(request);
+            if(CommanUtil.isNotNull(jobApplyResponse)){
 
-                return BaseResponse.builder().response(null).responseCode(Constants.SUCCESS_RESPONSE_CODE).responseMessage(configurationUtil.getMessage(Constants.SUCCESS_RESPONSE_CODE)).build();
+                return BaseResponse.builder().response(null).responseCode(Constants.SUCCESS_RESPONSE_CODE).responseMessage(configurationUtil.getMessage(Constants.SUCCESS_RESPONSE_CODE)).response(jobApplyResponse).build();
 
             }else{
 
