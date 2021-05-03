@@ -19,7 +19,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Component
 public class JobBusinessImpl implements JobBusiness {
@@ -150,7 +152,9 @@ public class JobBusinessImpl implements JobBusiness {
             JobApplyResponse jobApplyResponse = service.applyJob(request);
             if(CommanUtil.isNotNull(jobApplyResponse)){
 
-                return BaseResponse.builder().response(null).responseCode(Constants.SUCCESS_RESPONSE_CODE).responseMessage(configurationUtil.getMessage(Constants.SUCCESS_RESPONSE_CODE)).response(jobApplyResponse).build();
+
+                return BaseResponse.builder().responseCode(Constants.SUCCESS_RESPONSE_CODE).responseMessage(configurationUtil.getMessage(Constants.SUCCESS_RESPONSE_CODE))
+                        .response(jobApplyResponse).build();
 
             }else{
 

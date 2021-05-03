@@ -134,7 +134,8 @@ public class JobServiceImpl implements JobService {
             JobEntity jobEntity = job.get();
             JobApplyResponse jobApplyResponse = JobApplyResponse.builder().job_title(jobEntity.getTitle())
                     .admin_username(jobEntity.getUsername())
-                    .company_name(jobEntity.getCompanyName()).build();
+                    .company_name(jobEntity.getCompanyName())
+                    .city(jobEntity.getCity()).build();
 
             return jobApplyResponse;
         }

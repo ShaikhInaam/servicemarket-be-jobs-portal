@@ -10,5 +10,6 @@ public class JobApplyResponse {
     private String admin_username;
     private String job_title;
     private String company_name;
+    private String city;
 
 }
