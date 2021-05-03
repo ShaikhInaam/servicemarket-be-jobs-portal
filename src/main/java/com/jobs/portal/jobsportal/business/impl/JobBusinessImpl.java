@@ -156,13 +156,7 @@ public class JobBusinessImpl implements JobBusiness {
             Integer jobAppliedId = service.applyJob(request);
             if(CommanUtil.isNotNull(jobAppliedId)){
 
-                Map<String, String> job = new HashMap<>();
-                job.put("username", jobEntity.getUsername());
-                job.put("jobTitle", jobEntity.getTitle());
-                job.put("companyName", jobEntity.getCompanyName());
-                job.put("city", jobEntity.getCity());
-
-                return BaseResponse.builder().response(job).responseCode(Constants.SUCCESS_RESPONSE_CODE).responseMessage(configurationUtil.getMessage(Constants.SUCCESS_RESPONSE_CODE)).build();
+                return BaseResponse.builder().response(null).responseCode(Constants.SUCCESS_RESPONSE_CODE).responseMessage(configurationUtil.getMessage(Constants.SUCCESS_RESPONSE_CODE)).build();
 
             }else{
 
