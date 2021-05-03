@@ -22,7 +22,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Component
 public class JobBusinessImpl implements JobBusiness {
@@ -81,6 +83,7 @@ public class JobBusinessImpl implements JobBusiness {
             if (postJobId != null) {
                 baseResponse.setResponseMessage(configurationUtil.getMessage(Constants.SUCCESS_RESPONSE_CODE));
                 baseResponse.setResponseCode(Constants.SUCCESS_RESPONSE_CODE);
+
             }else{
 
                 return BaseResponse.builder().response(null).responseCode(Constants.FAILUARE_RESPNSE_CODE).responseMessage(configurationUtil.getMessage(Constants.FAILUARE_RESPNSE_CODE)).build();
@@ -153,7 +156,13 @@ public class JobBusinessImpl implements JobBusiness {
             Integer jobAppliedId = service.applyJob(request);
             if(CommanUtil.isNotNull(jobAppliedId)){
 
-                return BaseResponse.builder().response(null).responseCode(Constants.SUCCESS_RESPONSE_CODE).responseMessage(configurationUtil.getMessage(Constants.SUCCESS_RESPONSE_CODE)).build();
+                Map<String, String> job = new HashMap<>();
+                job.put("username", jobEntity.getUsername());
+                job.put("jobTitle", jobEntity.getTitle());
+                job.put("companyName", jobEntity.getCompanyName());
+                job.put("city", jobEntity.getCity());
+
+                return BaseResponse.builder().response(job).responseCode(Constants.SUCCESS_RESPONSE_CODE).responseMessage(configurationUtil.getMessage(Constants.SUCCESS_RESPONSE_CODE)).build();
 
             }else{
 
